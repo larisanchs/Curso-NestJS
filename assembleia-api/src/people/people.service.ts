@@ -11,10 +11,11 @@ export class PeopleService {
     }
 
     findById(id : number) : Person { // O método "findById" recebe o parâmetro "id" do tipo number, e retorna como resposta uma "person".
-        const foundPerson = this.people.find(function(person){ // O objeto "foundPerson" armazena a pessoa que possui o id igual ao que foi passado no parâmetro, através da function que filtra as pessoas com base no parâmetro. Ou seja, as pessoas que tiverem o id diferente do qual foi passado no parâmetro retornarão "false", e a pessoa que possuir o id igual ao que foi passado no parâmetro retornará "true".
-            return person.id == id
-        })
+        const foundPerson = this.people.find(person => person.id == id) // O objeto "foundPerson" armazena a pessoa que possui o id igual ao que foi passado no parâmetro, através da function que filtra as pessoas com base no parâmetro. Ou seja, as pessoas que tiverem o id diferente do qual foi passado no parâmetro retornarão "false", e a pessoa que possuir o id igual ao que foi passado no parâmetro retornará "true".
+
         return foundPerson; // Retorna a pessoa com o id igual ao que foi passado no parâmetro.
+
+        // Podemos fazer também dessa forma (para ficar mais simplificado): return this.people.find(people => person.id == id)
     }
 
     save( person : Person ) { // O método save cadastra uma "person" na lista "people" através da função "push". Esse método recebe o parâmetro person, do tipo Person.
@@ -22,10 +23,15 @@ export class PeopleService {
     }
 
     update( id : number, updatingPerson : PersonUpdatingRequest ){
-        this.people.forEach(function(person) {
+        this.people.forEach(person => {
             if (id == person.id) {
                 person.name = updatingPerson.name;
             }
         })
+    }
+
+    delete( id : number ){
+        const newList = this.people.filter(person => person.id != id)
+        this.people = newList;
     }
 }

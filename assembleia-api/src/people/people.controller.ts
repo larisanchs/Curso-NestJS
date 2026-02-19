@@ -1,4 +1,4 @@
-import { Controller, Res, Get, Post, Body, Param, Put } from '@nestjs/common';
+import { Controller, Res, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { Response } from 'express';
 import { PeopleService } from './people.service';
 import { Person, PersonUpdatingRequest } from './person'
@@ -43,6 +43,17 @@ export class PeopleController {
             this.peopleService.update(id, personUpdateData);
             return response.status(204).send("Atualizado com sucesso!");
         }
-        
+    }
+
+    @Delete('/:id') // :id → diz que a rota terá um valor variável
+    delete( @Param('id') id : number, @Res() response : Response) { // @Param('id') → pega esse valor da URL
+        const person = this.peopleService.findById(id);
+        if (!person){ // Se a pessoa com o id passado no parâmetro não existir, retornará o código de status 404 not found.
+            return response.status(404).send();
+        }
+        else { // Se a pessoa existir, retornará o código de status 204 sucess.
+            this.peopleService.delete(id);
+            return response.status(204).send();
+        }
     }
 }
