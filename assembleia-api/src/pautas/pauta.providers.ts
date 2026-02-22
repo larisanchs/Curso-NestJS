@@ -1,5 +1,5 @@
 import { DataSource, Repository } from "typeorm";
-import { Pauta } from './pautas.entity';
+import { Pauta } from './pauta.entity';
 import { Provider } from '@nestjs/common';
 
 const pautaRepository: Provider<Repository<Pauta>> = { // Essa tipagem significa que esse provider irá fornecer um Repository da entidade Pauta. Ou seja, o que vem depois dos dois pontos (:) especifica o que a constante (const) está provendo. Nesse caso, o provider está provendo um repositório de pauta.
