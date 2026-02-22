@@ -7,9 +7,10 @@ import { PeopleModule } from './people/people.module';
 import { PeopleController } from './people/people.controller';
 import { PeopleService } from './people/people.service';
 import { DatabaseModule } from './database/database.module'
+import { PautasModule } from './pautas/pautas.module';
 
 @Module({
-  imports: [PeopleModule, DatabaseModule],
+  imports: [PeopleModule, DatabaseModule, PautasModule],
   controllers: [AppController, HelloController],
   providers: [AppService, HelloService],
 })
