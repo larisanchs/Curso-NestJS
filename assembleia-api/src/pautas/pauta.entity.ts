@@ -31,6 +31,26 @@ export class Pauta{
         return StatusPauta.NAO_INICIADA;
     }
 
+    // Método para verificar se a pauta foi iniciada -> retorna True ou False
+    public isFoiIniciada(): boolean {
+        return this.isInStatus(StatusPauta.INICIADA);
+    }
+
+    // Método para verificar se a pauta já está encerrada -> retorna True ou False
+    public isFoiEncerrada(): boolean {
+        return this.isInStatus(StatusPauta.ENCERRADA);
+    }
+    
+    // Método para verificar se é possível iniciar a sessão da pauta -> retorna True ou False
+    public isPossivelIniciarSessao(): boolean {
+        return this.isInStatus(StatusPauta.NAO_INICIADA);
+    }
+
+    // Método para verificar se a pauta está no status que vai ser passado no parâmetro
+    public isInStatus(statusVerificar: StatusPauta) : boolean {
+        const status = this.obterStatus();
+        return status == statusVerificar;
+    }
 }
 
 enum StatusPauta {
