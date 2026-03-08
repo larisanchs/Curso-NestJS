@@ -9,9 +9,13 @@ export class CriarPautaResource{
 
 // Criando uma classe que retornará uma pauta. Ou seja, isso será um objeto representacional que retornará um objeto do tipo pauta (retornará o id, descrição e status, que é o que importa para o cliente)
 export class PautaResource {
-    id: number;
+    id: string;
     descricao: string;
     status: string;
+}
+
+export class NovaSessaoResource {
+    minutos: number;
 }
 
 // Criando um método que vai receber a entidade Pauta, e vai retornar o PautaResource.

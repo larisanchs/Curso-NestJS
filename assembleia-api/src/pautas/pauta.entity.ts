@@ -5,7 +5,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeor
 export class Pauta{
 
     @PrimaryGeneratedColumn() // Significa que esse id vai ser gerado pelo banco de dados, e esse id será a primary key (identificador).
-    id?: number; // O ? serve para indicar que o id não irá ser obrigatório
+    id?: string; // O ? serve para indicar que o id não irá ser obrigatório
 
     @Column() // Esse decorator serve para definir que é apenas uma coluna comum.
     descricao: string;
