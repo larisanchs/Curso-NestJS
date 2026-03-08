@@ -29,4 +29,9 @@ export class PautasService {
 
         return new Result(pauta, null);
     }
+
+    // Criando um método assíncrono que vai retornar o array de pautas
+    async findAll(): Promise<Pauta[]> {
+        return await this.pautaRepository.find();
+    }
 }

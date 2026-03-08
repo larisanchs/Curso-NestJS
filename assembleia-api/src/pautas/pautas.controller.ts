@@ -1,4 +1,4 @@
-import { Controller, Body, Res, Post, HttpStatus } from '@nestjs/common';
+import { Controller, Body, Res, Post, Get, HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
 import { PautasService } from './pautas.service';
 import { CriarPautaResource, toDomain, toRepresentation } from './pautas.resource';
@@ -23,5 +23,11 @@ export class PautasController{
 
         // Para retornar o código de status, podemos usar o HttpStatus
         return response.status(HttpStatus.CREATED).send(toRepresentation(result.value));
+    }
+
+    @Get()
+    async list(@Res() response: Response){
+        const result = await this.pautasService.findAll();
+        return response.status(HttpStatus.OK).send( result.map(toRepresentation) )
     }
 }
