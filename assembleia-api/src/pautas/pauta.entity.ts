@@ -18,4 +18,9 @@ export class Pauta{
 
     @Column( {type: 'timestamp', nullable: true}) // O decorator define que será uma coluna comum.
     fechamento?: Date;
+
+    obterStatus(): string {
+        return "Sem status";
+    }
+
 }

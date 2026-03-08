@@ -1,8 +1,9 @@
-import { Controller, Body, Res, Post } from '@nestjs/common';
+import { Controller, Body, Res, Post, HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
 import { PautasService } from './pautas.service';
-import { CriarPautaResource, toDomain } from './pautas.resource';
+import { CriarPautaResource, toDomain, toRepresentation } from './pautas.resource';
 import { Pauta } from './pauta.entity';
+import { ErrorResponse } from 'src/common/erro.resource';
 
 @Controller('pautas')
 export class PautasController{
@@ -17,10 +18,10 @@ export class PautasController{
         const result = await this.pautasService.save(pautaDomain)
 
         if(result.isError()){
-            return response.status(409).send({
-                "message": result.error.message
-            })
+            return response.status(HttpStatus.CONFLICT).send(new ErrorResponse(result.error.message))
         }
-        return response.status(201).send(result.value);
+
+        // Para retornar o código de status, podemos usar o HttpStatus
+        return response.status(HttpStatus.CREATED).send(toRepresentation(result.value));
     }
 }
